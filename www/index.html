@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+        <link rel="stylesheet" type="text/css" href="js/common/jquery-mobile/jquery.mobile-1.3.2.min.css" />
+       
+	    <script type="text/javascript" src="js/common/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/common/jquery-mobile/jquery.mobile-1.3.2.min.js"></script>
+        
+        <script type="text/javascript" src="js/Constants.js"></script>
+        <script type="text/javascript" src="js/Common.js"></script>
+        <script type="text/javascript" src="js/AppConfig.js"></script>
+        <script type="text/javascript" src="js/DBController.js"></script>
+        <script type="text/javascript" src="js/InitDatabase.js"></script>
+        <script type="text/javascript" src="js/AppDao.js"></script>
+        <script type="text/javascript" src="js/AppToast.js"></script>
+        
+        <script>
+        
+        function addUser(){
+			var execSuccessHandler = function(){
+				showToast("Insert user success");
+			};
+			var execErrHandler = function(err){
+				showToast("execErrHandler : "+ JSON.stringify(err));
+				dLogger(JSON.stringify(err));
+			};
+			
+			appDao.getUserDao().insert(1,"Phonegap2.9",29,execSuccessHandler, execErrHandler);
+			
+		}
+		
+		function findAllUser(){
+			var execSuccessHandler = function(results){
+				showToast(JSON.stringify(results));
+			};
+			var execErrHandler = function(err){
+				showToast("execErrHandler : "+err);
+			};
+			
+			appDao.getUserDao().select_all(execSuccessHandler, execErrHandler);
+			
+		}
+		
+		function addRole(){
+			var execSuccessHandler = function(){
+				showToast("Insert role success");
+			};
+			var execErrHandler = function(err){
+				showToast("execErrHandler : "+ JSON.stringify(err));
+			};
+			
+			appDao.getRoleDao().insert(1,"administrator",execSuccessHandler, execErrHandler);
+			
+		}
+		
+		function findAllRole(){
+			var execSuccessHandler = function(results){
+				showToast(JSON.stringify(results));
+			};
+			var execErrHandler = function(err){
+				showToast("execErrHandler : "+err);
+			};
+			
+			appDao.getRoleDao().select_all(execSuccessHandler, execErrHandler);
+			
+		}
+        
+        </script>
+        
+        <title>Hello World</title>
+    </head>
+    <body onLoad="initDatabase()">
+        <div data-role="page">
+            <div data-role="header" data-id="page_header"  data-position="fixed" data-tap-toggle="false">
+                <h1>Just for test</h1>
+            </div>
+            <div data-role="content">
+                <a href="#" data-role="button" data-theme="a" onclick="addUser()">Add User</a>
+                <a href="#" data-role="button" data-theme="b" onclick="findAllUser()">Find All User</a>
+                <a href="#" data-role="button" data-theme="c" onclick="addRole()">Add Role</a>
+                <a href="#" data-role="button" data-theme="d" onclick="findAllRole()">Find All User</a>
+                
+                <br/><br/><br/><br/><br/>
+                Note:
+                <br/><br/><br/><br/>
+                If you are using Phonegap, you can add load event listener to initial database like this:
+                
+                window.addEventListener('load', initDatabase, false);
+            </div>
+		</div>
+    </body>
+</html>

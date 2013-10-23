@@ -1,0 +1,38 @@
+<sql>
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                        删除数据库表
+     ////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    
+     <!-- 用户 
+     <statement>
+         DROP TABLE IF EXISTS TB_Pantones;
+     </statement>
+	 -->
+     <!-- 角色 
+     <statement>
+         DROP TABLE IF EXISTS TB_Ftnames;
+     </statement>
+	 -->
+     
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                        创建数据库表
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    
+    <!-- 用户 
+     uid			int
+     name	用户名	string
+     age	年龄		int
+     --> 
+    <statement>
+        create table if not exists TB_User (uid integer primary key, name text, age integer);
+    </statement>
+    
+    <!-- 角色 
+     rid			int
+     rname	角色名称	string
+     --> 
+    <statement>
+        create table if not exists TB_Role (rid integer primary key, rname text);
+    </statement>
+
+</sql>
